@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue May 15 15:59:10 2018
+Created on Thu Jun 14 08:55:09 2018
 
 @author: thive
 """
@@ -122,510 +122,554 @@ class Alvo(pygame.sprite.Sprite):
       self.rect.x = pos_x
       self.rect.y = pos_y        
       
-    
+
 #===========================INICIALIZAÇÃO==============================#
 
 pygame.init()
+White = (255,255,255)
+Yellow = (225,225,000)
+menu = True
+while menu:
+    Display_width  = 1291
+    Display_height = 594
 
-tela = pygame.display.set_mode((1291, 594), 0, 32)
-pygame.display.set_caption('Beer Pong')
+    tela = pygame.display.set_mode((Display_width, Display_height), 0, 32)
+    fundo = pygame.image.load("MESA 2.png").convert()
 
-# carrega imagem de fundo
-fundo = pygame.image.load("MESA 2.png").convert()
-
-# cria bola 
-
-bola_azul_group = pygame.sprite.Group()
-bola_azul = Bola_AZUL("BOLA_AZUL 1.png", 1200,255, 30, 10)
-bola_azul_group.add(bola_azul)
-
-bola_laranja_group = pygame.sprite.Group()
-bola_laranja = Bola("BOLA 1.png", 60,255, 30, 10)
-bola_laranja_group.add(bola_laranja)
-
-relogio = pygame.time.Clock()
-
-#Colocar os copos
-copo = Copo("COPO.png", 150,160)
-copo1 = Copo("COPO.png", 150,220)
-copo2 = Copo("COPO.png", 150,280)
-copo3 = Copo("COPO.png", 150,340)
-copo4 = Copo("COPO.png", 200,190)
-copo5 = Copo("COPO.png", 200,250)
-copo6 = Copo("COPO.png", 200,310)
-copo7 = Copo("COPO.png", 250,220)
-copo8 = Copo("COPO.png", 250,280)
-copo9 = Copo("COPO.png", 300,250)
-
-copo_azul = Copo("COPO_AZUL.png", 1050,160)
-copo_azul1 = Copo("COPO_AZUL.png", 1050,220)
-copo_azul2 = Copo("COPO_AZUL.png", 1050,280)
-copo_azul3 = Copo("COPO_AZUL.png", 1050,340)
-copo_azul4 = Copo("COPO_AZUL.png", 1000,190)
-copo_azul5 = Copo("COPO_AZUL.png", 1000,250)
-copo_azul6 = Copo("COPO_AZUL.png", 1000,310)
-copo_azul7 = Copo("COPO_AZUL.png", 950,220)
-copo_azul8 = Copo("COPO_AZUL.png", 950,280)
-copo_azul9 = Copo("COPO_AZUL.png", 900,250)
-
-#Criar alvos precisos
-
-alvo_a = Alvo("ALVO.png", 1100,210)
-alvo1_a = Alvo("ALVO.png", 1100,270)
-alvo2_a = Alvo("ALVO.png", 1100,330)
-alvo3_a = Alvo("ALVO.png", 1100,390)
-alvo4_a = Alvo("ALVO.png", 1050,240)
-alvo5_a = Alvo("ALVO.png", 1050,300)
-alvo6_a = Alvo("ALVO.png", 1050,360)
-alvo7_a = Alvo("ALVO.png", 1000,270)
-alvo8_a = Alvo("ALVO.png", 1000,330)
-alvo9_a = Alvo("ALVO.png", 950,300)
-
-alvo = Alvo("ALVO.png", 200,210)
-alvo1 = Alvo("ALVO.png", 200,270)
-alvo2 = Alvo("ALVO.png", 200,330)
-alvo3 = Alvo("ALVO.png", 200,390)
-alvo4 = Alvo("ALVO.png", 250,240)
-alvo5 = Alvo("ALVO.png", 250,300)
-alvo6 = Alvo("ALVO.png", 250,360)
-alvo7 = Alvo("ALVO.png", 300,270)
-alvo8 = Alvo("ALVO.png", 300,330)
-alvo9 = Alvo("ALVO.png", 350,300)
-
-
-
-#Criar a barra de poder
-barra = Barra("BARRA.png", 20, 530)
-barra_verde = Barra("BARRA_VERDE.png", 25, 530)
-barra_verde_1 = Barra("BARRA_VERDE_1.png", 20, 530)
-barra_verde_2 = Barra("BARRA_VERDE_2.png", 30, 530)
-barra_laranja = Barra("BARRA_LARANJA.png", 35, 530)
-barra_laranja_1 = Barra("BARRA_LARANJA_1.png", 40, 530)
-barra_laranja_2 = Barra("BARRA_LARANJA_2.png", 45, 530)
-barra_vermelha = Barra("BARRA_VERMELHA.png", 50, 530)
-barra_vermelha_1 = Barra("BARRA_VERMELHA_1.png", 55, 530)
-barra_vermelha_2 = Barra("BARRA_VERMELHA_2.png", 65, 530)
-barra_vermelha_3 = Barra("BARRA_VERMELHA_3.png", 60, 530)
-
-barra_a = Barra("BARRA.png", 1200, 530)
-barra_verde_a = Barra("BARRA_VERDE.png", 1240, 530)
-barra_verde_1_a = Barra("BARRA_VERDE_1.png", 1245, 530)
-barra_verde_2_a = Barra("BARRA_VERDE_2.png", 1235, 530)
-barra_laranja_a = Barra("BARRA_LARANJA.png", 1230, 530)
-barra_laranja_1_a = Barra("BARRA_LARANJA_1.png", 1225, 530)
-barra_laranja_2_a = Barra("BARRA_LARANJA_2.png", 1220, 530)
-barra_vermelha_a = Barra("BARRA_VERMELHA.png", 1215, 530)
-barra_vermelha_1_a = Barra("BARRA_VERMELHA_1.png", 1210, 530)
-barra_vermelha_2_a = Barra("BARRA_VERMELHA_2.png", 1200, 530)
-barra_vermelha_3_a = Barra("BARRA_VERMELHA_3.png", 1205, 530)
-
-
-#Criar os grupos
-copo_group = pygame.sprite.Group()
-copo_group.add(copo,copo1,copo2,copo3,copo4,copo5,copo6,copo7,copo8,copo9)
-
-copo_azul_group = pygame.sprite.Group()
-copo_azul_group.add(copo_azul,copo_azul1,copo_azul2,copo_azul3,copo_azul4,copo_azul5,copo_azul6,copo_azul7,copo_azul8,copo_azul9)
-
-barra_group = pygame.sprite.Group()
-barra_group.add(barra)
-
-barra_group_a = pygame.sprite.Group()
-barra_group_a.add(barra_a)
-
-alvo_group = pygame.sprite.Group()
-alvo_group.add(alvo,alvo1,alvo2,alvo3,alvo4,alvo5,alvo6,alvo7,alvo8,alvo9)
-
-alvo_a_group = pygame.sprite.Group()
-alvo_a_group.add(alvo_a,alvo1_a,alvo2_a,alvo3_a,alvo4_a,alvo5_a,alvo6_a,alvo7_a,alvo8_a,alvo9_a)
-
-forca = 0
-forca2 = 0
-
-mexendo = False
-b = 0
-
-#=============== PONTUAÇÃO ===================
-blue = 0, 0, 200
-red = 200,0,0
-black = 0,0,0
-
-def Pontos(pontuacao):
-    font = pygame.font.SysFont(None, 25)
-    text = font.render("Copos restntes: " + str(pontuacao), True, red)
-    tela.blit(text,(10,10))
-    
-def Pontos_Laranja(pontuacao):
-    font = pygame.font.SysFont(None, 25)
-    text = font.render("Copos restntes: " + str(pontuacao), True, blue)
-    tela.blit(text,(1120,10))
-
-
-# ===============   LOOPING PRINCIPAL   ===============
-rodando = True
-turno = True
-migue2 = True
-lotaif = True
-lotaif2 = True
-pontos = 0
-pontos_laranja = 0
-lançamento = False
-i = 1
-i2 = 1
-lançamento2 = False
-
-while rodando:    
-    pressed_keys = pygame.key.get_pressed()
-    tempo = relogio.tick(100)
-      
-    for event in pygame.event.get(): 
-        if event.type == QUIT:
-          rodando = False
-
-    if turno:
-        if not migue2:
-            turno = False
-        bola_laranja.move()
-        
-    if not turno:
-        if migue2:
-            turno = True    
-        bola_azul.move()
-            
-    if migue2:
-        if pressed_keys[K_RIGHT]:
-            barra_group.remove(barra_verde_a, barra_verde_1_a, barra_verde_2_a, barra_laranja_a, barra_laranja_1_a, barra_laranja_2_a, barra_vermelha_a, barra_vermelha_1_a, barra_vermelha_2_a, barra_vermelha_3_a)
-            bola_laranja.movendo = True
-            forca2 = 0
-            if pontos <= 10 and pontos >= 8:
-                if lotaif:
-                    forca+=10
-                    if forca >= 1200:
-                        lotaif = False
-                if not lotaif:
-                    forca-=10
-                    if forca <= 0:
-                        lotaif = True
-            if pontos <= 7 and pontos >= 5:
-                if lotaif:
-                    forca+=25
-                    if forca >= 1200:
-                        lotaif = False
-                if not lotaif:
-                    forca-=25
-                    if forca <= 0:
-                        lotaif = True
-            if pontos <= 4 and pontos >= 2:
-                mexendo = False
-                if lotaif:
-                    forca+= 40
-                    if forca >= 1200:
-                        lotaif = False
-                if not lotaif:
-                    forca-=40
-                    if forca <= 0:
-                        lotaif = True
-                if not mexendo:
-                    b+=10
-                    fundo = pygame.transform.scale(fundo, (b, b))
-                    if b >= 100:
-                        mexendo = True
-                if mexendo:
-                    b-=10
-                    fundo = pygame.transform.scale(fundo, (b, b))
-                    if b <= 0:
-                        mexendo = False
-            if pontos <= 1 and pontos >= 0:
-                if lotaif:
-                    forca+= 70
-                    if forca >= 1200:
-                        lotaif = False
-                if not lotaif:
-                    forca-=70
-                    if forca <= 0:
-                        lotaif = True
-
-            if forca == 0:
-                barra_group.remove(barra_verde, barra_verde_1, barra_verde_2, barra_laranja, barra_laranja_1, barra_laranja_2, barra_vermelha, barra_vermelha_1, barra_vermelha_2, barra_vermelha_3)
-            if forca>0 and forca<= 120:
-                barra_group.add(barra_verde_1)
-                barra_group.remove(barra_verde)
-            if forca>120 and forca<= 240:
-                barra_group.add(barra_verde)
-                barra_group.remove(barra_verde_2)
-            if forca>240 and forca<= 360:
-                barra_group.add(barra_verde_2)
-                barra_group.remove(barra_laranja)
-            if forca>360 and forca<= 480:
-                barra_group.add(barra_laranja)
-                barra_group.remove(barra_laranja_1)
-            if forca>480 and forca<= 600:
-                barra_group.add(barra_laranja_1)
-                barra_group.remove(barra_laranja_2)
-            if forca>600 and forca<= 720:
-                barra_group.add(barra_laranja_2)
-                barra_group.remove(barra_vermelha)
-            if forca>720 and forca<= 840:
-                barra_group.add(barra_vermelha)
-                barra_group.remove(barra_vermelha_1)
-            if forca>840 and forca<= 960:
-                barra_group.add(barra_vermelha_1)
-                barra_group.remove(barra_vermelha_3)
-            if forca>960 and forca<= 1080:
-                barra_group.add(barra_vermelha_3)
-                barra_group.remove(barra_vermelha_2)
-            if forca>1080 and forca<= 1200:
-                barra_group.add(barra_vermelha_2)
-            print (forca)
-                
-                
-        if not pressed_keys[K_RIGHT]:
-          if bola_laranja.movendo:
-              lançamento = True
-              if lançamento:
-                  if i <= forca/1:                      
-                      bola_laranja.rect.x += 10*i
-                      i+=0.1
-                  if i >= forca/1:
-                      i-=0.1
-                      bola_laranja.rect.x += i
-                      
-              if bola_laranja.rect.x >= forca + 100:
-                      lançamento = False
-                      bola_laranja.movendo = False
-                      migue2 = False
-                      i2 = 1
-              bola_azul.rect.x = 1200
-              forca2 = 0
-              bola_laranja.vx=0
-              if pontos_laranja == 10:
-                  bola_azul.vy = 10
-              if pontos_laranja == 9:
-                  bola_azul.vy = 15
-              if pontos_laranja == 8: 
-                  bola_azul.vy = 20
-              if pontos_laranja == 7: 
-                  bola_azul.vy = 25  
-              if pontos_laranja == 6: 
-                  bola_azul.vy = 30
-              if pontos_laranja == 5: 
-                  bola_azul.vy = 35
-              if pontos_laranja == 4: 
-                  bola_azul.vy = 40
-              if pontos_laranja == 3: 
-                  bola_azul.vy = 45
-              if pontos_laranja == 2: 
-                  bola_azul.vy = 50
-              if pontos_laranja == 1: 
-                  bola_azul.vy = 55        
-              
-    if not migue2:  
-        if pressed_keys[K_LEFT]:
-            barra_group.remove(barra_verde, barra_verde_1, barra_verde_2, barra_laranja, barra_laranja_1, barra_laranja_2, barra_vermelha, barra_vermelha_1, barra_vermelha_2, barra_vermelha_3)
-            bola_azul.movendo = True
-            forca = 0
-            if pontos_laranja <= 10 and pontos_laranja >= 8:
-                if lotaif2:
-                    forca2+=10
-                    if forca2 >= 1200:
-                        lotaif2 = False
-                if not lotaif2:
-                    forca2-=10
-                    if forca2 <= 0:
-                        lotaif2 = True
-            if pontos_laranja <= 7 and pontos_laranja >= 5:
-                if lotaif2:
-                    forca2+=25
-                    if forca2 >= 1200:
-                        lotaif2 = False
-                if not lotaif2:
-                    forca2-=25
-                    if forca2 <= 0:
-                        lotaif2 = True
-            if pontos_laranja <= 4 and pontos_laranja >= 2:
-                if lotaif2:
-                    forca2+= 40
-                    if forca2 >= 1200:
-                        lotaif2 = False
-                if not lotaif2:
-                    forca2-=40
-                    if forca2 <= 0:
-                        lotaif2 = True
-            if pontos_laranja <= 1 and pontos_laranja >= 0:
-                if lotaif2:
-                    forca2+= 70
-                    if forca2 >= 1200:
-                        lotaif2 = False
-                if not lotaif2:
-                    forca2-=70
-                    if forca2 <= 0:
-                        lotaif2 = True
-            if forca2 == 0:
-                barra_group.remove(barra_verde_a, barra_verde_1_a, barra_verde_2_a, barra_laranja_a, barra_laranja_1_a, barra_laranja_2_a, barra_vermelha_a, barra_vermelha_1_a, barra_vermelha_2_a, barra_vermelha_3_a)
-            if forca2>0 and forca2<= 120:
-                barra_group.add(barra_verde_1_a)
-                barra_group.remove(barra_verde_a)
-            if forca2>120 and forca2<= 240:
-                barra_group.add(barra_verde_a)
-                barra_group.remove(barra_verde_2_a)
-            if forca2>240 and forca2<= 360:
-                barra_group.add(barra_verde_2_a)
-                barra_group.remove(barra_laranja_a)
-            if forca2>360 and forca2<= 480:
-                barra_group.add(barra_laranja_a)
-                barra_group.remove(barra_laranja_1_a)
-            if forca2>480 and forca2<= 600:
-                barra_group.add(barra_laranja_1_a)
-                barra_group.remove(barra_laranja_2_a)
-            if forca2>600 and forca2<= 720:
-                barra_group.add(barra_laranja_2_a)
-                barra_group.remove(barra_vermelha_a)
-            if forca2>720 and forca2<= 840:
-                barra_group.add(barra_vermelha_a)
-                barra_group.remove(barra_vermelha_1_a)
-            if forca2>840 and forca2<= 960:
-                barra_group.add(barra_vermelha_1_a)
-                barra_group.remove(barra_vermelha_3_a)
-            if forca2>960 and forca2<= 1080:
-                barra_group.add(barra_vermelha_3_a)
-                barra_group.remove(barra_vermelha_2_a)
-            if forca2>1080 and forca2<= 1200:
-                barra_group.add(barra_vermelha_2_a)
-            
-            print(forca2)
-          
-        
-        if not pressed_keys[K_LEFT]:  
-            if bola_azul.movendo:
-                  lançamento2 = True
-                  if lançamento2:
-                      if i2 <= forca2/10:                      
-                          bola_azul.rect.x -=10* i2
-                          i2+=0.1
-                      if i2 >= forca2/10:
-                          i2-=0.1
-                          bola_azul.rect.x -= i2
-                          
-                  if bola_azul.rect.x <= -forca2 + 1100:
-                          lançamento2 = False
-                          bola_azul.movendo = False
-                          migue2 = True
-                          i = 1
-                  bola_laranja.rect.x = 60
-                  forca = 0
-                  bola_azul.vx=0
-                  if pontos == 10: 
-                      bola_laranja.vy = 10
-                  if pontos == 9: 
-                      bola_laranja.vy = 15
-                  if pontos == 8: 
-                      bola_laranja.vy = 20
-                  if pontos == 7: 
-                      bola_laranja.vy = 25  
-                  if pontos == 6: 
-                      bola_laranja.vy = 30
-                  if pontos == 5: 
-                      bola_laranja.vy = 35
-                  if pontos == 4: 
-                      bola_laranja.vy = 40
-                  if pontos == 3: 
-                      bola_laranja.vy = 45
-                  if pontos == 2: 
-                      bola_laranja.vy = 50
-                  if pontos == 1: 
-                      bola_laranja.vy = 55
-              
-    if not lançamento2:                
-        if pygame.sprite.collide_rect(bola_azul,alvo):
-            bola_azul.vx=0
-            copo.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo1):
-            bola_azul.vx=0
-            copo1.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo2):
-            bola_azul.vx=0
-            copo2.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo3):
-            bola_azul.vx=0
-            copo3.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo4):
-            bola_azul.vx=0
-            copo4.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo5):
-            bola_azul.vx=0
-            copo5.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo6):
-            bola_azul.vx=0
-            copo6.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo7):
-            bola_azul.vx=0
-            copo7.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo8):
-            bola_azul.vx=0
-            copo8.kill()
-        if pygame.sprite.collide_rect(bola_azul,alvo9):
-            bola_azul.vx=0
-            copo9.kill()
-            
-    if not lançamento:        
-        if pygame.sprite.collide_rect(bola_laranja,alvo_a):
-            bola_laranja.vx=0
-            copo_azul.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo1_a):
-            bola_laranja.vx=0
-            copo_azul1.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo2_a):
-            bola_laranja.vx=0
-            copo_azul2.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo3_a):
-            bola_laranja.vx=0
-            copo_azul3.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo4_a):
-            bola_laranja.vx=0
-            copo_azul4.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo5_a):
-            bola_laranja.vx=0
-            copo_azul5.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo6_a):
-            bola_laranja.vx=0
-            copo_azul6.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo7_a):
-            bola_laranja.vx=0
-            copo_azul7.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo8_a):
-            bola_laranja.vx=0
-            copo_azul8.kill()
-        if pygame.sprite.collide_rect(bola_laranja,alvo9_a):
-            bola_laranja.vx=0
-            copo_azul9.kill()
-
-    pontos_laranja = len(copo_azul_group)
-    pontos = len(copo_group)
-    
-
-    Pontos_Laranja(pontos_laranja)
-    Pontos(pontos)
-
-    #gera saídas
+    menu_font = pygame.font.Font(None, 60)
     tela.blit(fundo, (0, 0))
-    Pontos(pontos)
-    Pontos_Laranja(pontos_laranja)
-
-
-
-    copo_azul_group.draw(tela)
-    copo_group.draw(tela)
-    bola_azul_group.draw(tela)
-    bola_laranja_group.draw(tela)
-    barra_group.draw(tela)
-    barra_group_a.draw(tela)
-
     
-    if pontos == 0 or pontos_laranja == 0:
-        rodando = False
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            menu = False
+            pygame.display.quit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN :
+                menu = False
+                jogar = True
+            if event.key == pygame.K_ESCAPE:
+                menu = False
+                pygame.display.quit()
+        font = pygame.font.SysFont(None,60)
+        fonte = pygame.font.SysFont(None,60)
+        text = font.render("ENTER PARA JOGAR",True,White)
+        texto = font.render("ESC PARA SAIR",True,White)
+        nome = fonte.render("BEER PONG",True, Yellow)
+        tela.blit(nome,(450,100))
+        tela.blit(text,(450,300))
+        tela.blit(texto,(450,200))
+        pygame.display.update()                
     
-        #coloca a tela na janela
-    pygame.display.update()
+
+while jogar:
+    tela = pygame.display.set_mode((1291, 594), 0, 32)
+    pygame.display.set_caption('Beer Pong')
+    
+    # carrega imagem de fundo
+    fundo = pygame.image.load("MESA 2.png").convert()
+    
+    # cria bola 
+    
+    bola_azul_group = pygame.sprite.Group()
+    bola_azul = Bola_AZUL("BOLA_AZUL 1.png", 1200,255, 30, 10)
+    bola_azul_group.add(bola_azul)
+    
+    bola_laranja_group = pygame.sprite.Group()
+    bola_laranja = Bola("BOLA 1.png", 60,255, 30, 10)
+    bola_laranja_group.add(bola_laranja)
+    
+    relogio = pygame.time.Clock()
+    
+    #Colocar os copos
+    copo = Copo("COPO.png", 150,160)
+    copo1 = Copo("COPO.png", 150,220)
+    copo2 = Copo("COPO.png", 150,280)
+    copo3 = Copo("COPO.png", 150,340)
+    copo4 = Copo("COPO.png", 200,190)
+    copo5 = Copo("COPO.png", 200,250)
+    copo6 = Copo("COPO.png", 200,310)
+    copo7 = Copo("COPO.png", 250,220)
+    copo8 = Copo("COPO.png", 250,280)
+    copo9 = Copo("COPO.png", 300,250)
+    
+    copo_azul = Copo("COPO_AZUL.png", 1050,160)
+    copo_azul1 = Copo("COPO_AZUL.png", 1050,220)
+    copo_azul2 = Copo("COPO_AZUL.png", 1050,280)
+    copo_azul3 = Copo("COPO_AZUL.png", 1050,340)
+    copo_azul4 = Copo("COPO_AZUL.png", 1000,190)
+    copo_azul5 = Copo("COPO_AZUL.png", 1000,250)
+    copo_azul6 = Copo("COPO_AZUL.png", 1000,310)
+    copo_azul7 = Copo("COPO_AZUL.png", 950,220)
+    copo_azul8 = Copo("COPO_AZUL.png", 950,280)
+    copo_azul9 = Copo("COPO_AZUL.png", 900,250)
+    
+    #Criar alvos precisos
+    
+    alvo_a = Alvo("ALVO.png", 1100,210)
+    alvo1_a = Alvo("ALVO.png", 1100,270)
+    alvo2_a = Alvo("ALVO.png", 1100,330)
+    alvo3_a = Alvo("ALVO.png", 1100,390)
+    alvo4_a = Alvo("ALVO.png", 1050,240)
+    alvo5_a = Alvo("ALVO.png", 1050,300)
+    alvo6_a = Alvo("ALVO.png", 1050,360)
+    alvo7_a = Alvo("ALVO.png", 1000,270)
+    alvo8_a = Alvo("ALVO.png", 1000,330)
+    alvo9_a = Alvo("ALVO.png", 950,300)
+    
+    alvo = Alvo("ALVO.png", 200,210)
+    alvo1 = Alvo("ALVO.png", 200,270)
+    alvo2 = Alvo("ALVO.png", 200,330)
+    alvo3 = Alvo("ALVO.png", 200,390)
+    alvo4 = Alvo("ALVO.png", 250,240)
+    alvo5 = Alvo("ALVO.png", 250,300)
+    alvo6 = Alvo("ALVO.png", 250,360)
+    alvo7 = Alvo("ALVO.png", 300,270)
+    alvo8 = Alvo("ALVO.png", 300,330)
+    alvo9 = Alvo("ALVO.png", 350,300)
+    
+    
+    
+    #Criar a barra de poder
+    barra = Barra("BARRA.png", 20, 530)
+    barra_verde = Barra("BARRA_VERDE.png", 25, 530)
+    barra_verde_1 = Barra("BARRA_VERDE_1.png", 20, 530)
+    barra_verde_2 = Barra("BARRA_VERDE_2.png", 30, 530)
+    barra_laranja = Barra("BARRA_LARANJA.png", 35, 530)
+    barra_laranja_1 = Barra("BARRA_LARANJA_1.png", 40, 530)
+    barra_laranja_2 = Barra("BARRA_LARANJA_2.png", 45, 530)
+    barra_vermelha = Barra("BARRA_VERMELHA.png", 50, 530)
+    barra_vermelha_1 = Barra("BARRA_VERMELHA_1.png", 55, 530)
+    barra_vermelha_2 = Barra("BARRA_VERMELHA_2.png", 65, 530)
+    barra_vermelha_3 = Barra("BARRA_VERMELHA_3.png", 60, 530)
+    
+    barra_a = Barra("BARRA.png", 1200, 530)
+    barra_verde_a = Barra("BARRA_VERDE.png", 1240, 530)
+    barra_verde_1_a = Barra("BARRA_VERDE_1.png", 1245, 530)
+    barra_verde_2_a = Barra("BARRA_VERDE_2.png", 1235, 530)
+    barra_laranja_a = Barra("BARRA_LARANJA.png", 1230, 530)
+    barra_laranja_1_a = Barra("BARRA_LARANJA_1.png", 1225, 530)
+    barra_laranja_2_a = Barra("BARRA_LARANJA_2.png", 1220, 530)
+    barra_vermelha_a = Barra("BARRA_VERMELHA.png", 1215, 530)
+    barra_vermelha_1_a = Barra("BARRA_VERMELHA_1.png", 1210, 530)
+    barra_vermelha_2_a = Barra("BARRA_VERMELHA_2.png", 1200, 530)
+    barra_vermelha_3_a = Barra("BARRA_VERMELHA_3.png", 1205, 530)
+    
+    
+    #Criar os grupos
+    copo_group = pygame.sprite.Group()
+    copo_group.add(copo,copo1,copo2,copo3,copo4,copo5,copo6,copo7,copo8,copo9)
+    
+    copo_azul_group = pygame.sprite.Group()
+    copo_azul_group.add(copo_azul,copo_azul1,copo_azul2,copo_azul3,copo_azul4,copo_azul5,copo_azul6,copo_azul7,copo_azul8,copo_azul9)
+    
+    barra_group = pygame.sprite.Group()
+    barra_group.add(barra)
+    
+    barra_group_a = pygame.sprite.Group()
+    barra_group_a.add(barra_a)
+    
+    alvo_group = pygame.sprite.Group()
+    alvo_group.add(alvo,alvo1,alvo2,alvo3,alvo4,alvo5,alvo6,alvo7,alvo8,alvo9)
+    
+    alvo_a_group = pygame.sprite.Group()
+    alvo_a_group.add(alvo_a,alvo1_a,alvo2_a,alvo3_a,alvo4_a,alvo5_a,alvo6_a,alvo7_a,alvo8_a,alvo9_a)
+    
+    forca = 0
+    forca2 = 0
+    
+    mexendo = False
+    b = 0
+    
+    #=============== PONTUAÇÃO ===================
+    blue = 0, 0, 200
+    red = 200,0,0
+    black = 0,0,0
+    
+    def Pontos(pontuacao):
+        font = pygame.font.SysFont(None, 25)
+        text = font.render("Copos restntes: " + str(pontuacao), True, red)
+        tela.blit(text,(10,10))
+        
+    def Pontos_Laranja(pontuacao):
+        font = pygame.font.SysFont(None, 25)
+        text = font.render("Copos restntes: " + str(pontuacao), True, blue)
+        tela.blit(text,(1120,10))
+    
+    
+    # ===============   LOOPING PRINCIPAL   ===============
+    rodando = True
+    turno = True
+    migue2 = True
+    lotaif = True
+    lotaif2 = True
+    pontos = 0
+    pontos_laranja = 0
+    lançamento = False
+    i = 1
+    i2 = 1
+    lançamento2 = False
+    
+    while rodando:  
+        pressed_keys = pygame.key.get_pressed()
+        tempo = relogio.tick(100)
+        
+        for event in pygame.event.get(): 
+            if event.type == pygame.QUIT:
+              menu = True
+              rodando = False
+              jogando = False
+              pygame.display.quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    menu = True
+                    rodando = False
+                    jogando = False
+                    pygame.display.quit()
+    
+        if turno:
+            if not migue2:
+                turno = False
+            bola_laranja.move()
+            
+        if not turno:
+            if migue2:
+                turno = True    
+            bola_azul.move()
+                
+        if migue2:
+            if pressed_keys[K_RIGHT]:
+                barra_group.remove(barra_verde_a, barra_verde_1_a, barra_verde_2_a, barra_laranja_a, barra_laranja_1_a, barra_laranja_2_a, barra_vermelha_a, barra_vermelha_1_a, barra_vermelha_2_a, barra_vermelha_3_a)
+                bola_laranja.movendo = True
+                forca2 = 0
+                if pontos <= 10 and pontos >= 8:
+                    if lotaif:
+                        forca+=10
+                        if forca >= 1200:
+                            lotaif = False
+                    if not lotaif:
+                        forca-=10
+                        if forca <= 0:
+                            lotaif = True
+                if pontos <= 7 and pontos >= 5:
+                    if lotaif:
+                        forca+=15
+                        if forca >= 1200:
+                            lotaif = False
+                    if not lotaif:
+                        forca-=15
+                        if forca <= 0:
+                            lotaif = True
+                if pontos <= 4 and pontos >= 2:
+                    mexendo = False
+                    if lotaif:
+                        forca+= 25
+                        if forca >= 1200:
+                            lotaif = False
+                    if not lotaif:
+                        forca-=25
+                        if forca <= 0:
+                            lotaif = True
+                    if not mexendo:
+                        b+=10
+                        fundo = pygame.transform.scale(fundo, (b, b))
+                        if b >= 100:
+                            mexendo = True
+                    if mexendo:
+                        b-=10
+                        fundo = pygame.transform.scale(fundo, (b, b))
+                        if b <= 0:
+                            mexendo = False
+                if pontos <= 1 and pontos >= 0:
+                    if lotaif:
+                        forca+= 40
+                        if forca >= 1200:
+                            lotaif = False
+                    if not lotaif:
+                        forca-=40
+                        if forca <= 0:
+                            lotaif = True
+    
+                if forca == 0:
+                    barra_group.remove(barra_verde, barra_verde_1, barra_verde_2, barra_laranja, barra_laranja_1, barra_laranja_2, barra_vermelha, barra_vermelha_1, barra_vermelha_2, barra_vermelha_3)
+                if forca>0 and forca<= 120:
+                    barra_group.add(barra_verde_1)
+                    barra_group.remove(barra_verde)
+                if forca>120 and forca<= 240:
+                    barra_group.add(barra_verde)
+                    barra_group.remove(barra_verde_2)
+                if forca>240 and forca<= 360:
+                    barra_group.add(barra_verde_2)
+                    barra_group.remove(barra_laranja)
+                if forca>360 and forca<= 480:
+                    barra_group.add(barra_laranja)
+                    barra_group.remove(barra_laranja_1)
+                if forca>480 and forca<= 600:
+                    barra_group.add(barra_laranja_1)
+                    barra_group.remove(barra_laranja_2)
+                if forca>600 and forca<= 720:
+                    barra_group.add(barra_laranja_2)
+                    barra_group.remove(barra_vermelha)
+                if forca>720 and forca<= 840:
+                    barra_group.add(barra_vermelha)
+                    barra_group.remove(barra_vermelha_1)
+                if forca>840 and forca<= 960:
+                    barra_group.add(barra_vermelha_1)
+                    barra_group.remove(barra_vermelha_3)
+                if forca>960 and forca<= 1080:
+                    barra_group.add(barra_vermelha_3)
+                    barra_group.remove(barra_vermelha_2)
+                if forca>1080 and forca<= 1200:
+                    barra_group.add(barra_vermelha_2)
+                print (forca)
+            if not pressed_keys[K_RIGHT]:
+              if bola_laranja.movendo:
+                  lançamento = True
+                  if lançamento:
+                      if i <= forca/1:                      
+                          bola_laranja.rect.x += 10*i
+                          i+=0.1
+                      if i >= forca/1:
+                          i-=0.1
+                          bola_laranja.rect.x += i
+                          
+                  if bola_laranja.rect.x >= forca + 100:
+                          lançamento = False
+                          bola_laranja.movendo = False
+                          migue2 = False
+                          i2 = 1
+                  bola_azul.rect.x = 1200
+                  forca2 = 0
+                  bola_laranja.vx=0
+                  if pontos_laranja == 10:
+                      bola_azul.vy = 10
+                  if pontos_laranja == 9:
+                      bola_azul.vy = 15
+                  if pontos_laranja == 8: 
+                      bola_azul.vy = 20
+                  if pontos_laranja == 7: 
+                      bola_azul.vy = 25  
+                  if pontos_laranja == 6: 
+                      bola_azul.vy = 30
+                  if pontos_laranja == 5: 
+                      bola_azul.vy = 35
+                  if pontos_laranja == 4: 
+                      bola_azul.vy = 40
+                  if pontos_laranja == 3: 
+                      bola_azul.vy = 45
+                  if pontos_laranja == 2: 
+                      bola_azul.vy = 50
+                  if pontos_laranja == 1: 
+                      bola_azul.vy = 55        
+                  
+        if not migue2:  
+            if pressed_keys[K_LEFT]:
+                barra_group.remove(barra_verde, barra_verde_1, barra_verde_2, barra_laranja, barra_laranja_1, barra_laranja_2, barra_vermelha, barra_vermelha_1, barra_vermelha_2, barra_vermelha_3)
+                bola_azul.movendo = True
+                forca = 0
+                if pontos_laranja <= 10 and pontos_laranja >= 8:
+                    if lotaif2:
+                        forca2+=10
+                        if forca2 >= 1200:
+                            lotaif2 = False
+                    if not lotaif2:
+                        forca2-=10
+                        if forca2 <= 0:
+                            lotaif2 = True
+                if pontos_laranja <= 7 and pontos_laranja >= 5:
+                    if lotaif2:
+                        forca2+=15
+                        if forca2 >= 1200:
+                            lotaif2 = False
+                    if not lotaif2:
+                        forca2-=15
+                        if forca2 <= 0:
+                            lotaif2 = True
+                if pontos_laranja <= 4 and pontos_laranja >= 2:
+                    if lotaif2:
+                        forca2+= 25
+                        if forca2 >= 1200:
+                            lotaif2 = False
+                    if not lotaif2:
+                        forca2-=25
+                        if forca2 <= 0:
+                            lotaif2 = True
+                if pontos_laranja <= 1 and pontos_laranja >= 0:
+                    if lotaif2:
+                        forca2+= 40
+                        if forca2 >= 1200:
+                            lotaif2 = False
+                    if not lotaif2:
+                        forca2-=40
+                        if forca2 <= 0:
+                            lotaif2 = True
+                if forca2 == 0:
+                    barra_group.remove(barra_verde_a, barra_verde_1_a, barra_verde_2_a, barra_laranja_a, barra_laranja_1_a, barra_laranja_2_a, barra_vermelha_a, barra_vermelha_1_a, barra_vermelha_2_a, barra_vermelha_3_a)
+                if forca2>0 and forca2<= 120:
+                    barra_group.add(barra_verde_1_a)
+                    barra_group.remove(barra_verde_a)
+                if forca2>120 and forca2<= 240:
+                    barra_group.add(barra_verde_a)
+                    barra_group.remove(barra_verde_2_a)
+                if forca2>240 and forca2<= 360:
+                    barra_group.add(barra_verde_2_a)
+                    barra_group.remove(barra_laranja_a)
+                if forca2>360 and forca2<= 480:
+                    barra_group.add(barra_laranja_a)
+                    barra_group.remove(barra_laranja_1_a)
+                if forca2>480 and forca2<= 600:
+                    barra_group.add(barra_laranja_1_a)
+                    barra_group.remove(barra_laranja_2_a)
+                if forca2>600 and forca2<= 720:
+                    barra_group.add(barra_laranja_2_a)
+                    barra_group.remove(barra_vermelha_a)
+                if forca2>720 and forca2<= 840:
+                    barra_group.add(barra_vermelha_a)
+                    barra_group.remove(barra_vermelha_1_a)
+                if forca2>840 and forca2<= 960:
+                    barra_group.add(barra_vermelha_1_a)
+                    barra_group.remove(barra_vermelha_3_a)
+                if forca2>960 and forca2<= 1080:
+                    barra_group.add(barra_vermelha_3_a)
+                    barra_group.remove(barra_vermelha_2_a)
+                if forca2>1080 and forca2<= 1200:
+                    barra_group.add(barra_vermelha_2_a)
+                
+                print(forca2)
+              
+            
+            if not pressed_keys[K_LEFT]:  
+                if bola_azul.movendo:
+                      lançamento2 = True
+                      if lançamento2:
+                          if i2 <= forca2/10:                      
+                              bola_azul.rect.x -=10* i2
+                              i2+=0.1
+                          if i2 >= forca2/10:
+                              i2-=0.1
+                              bola_azul.rect.x -= i2
+                              
+                      if bola_azul.rect.x <= -forca2 + 1100:
+                              lançamento2 = False
+                              bola_azul.movendo = False
+                              migue2 = True
+                              i = 1
+                      bola_laranja.rect.x = 60
+                      forca = 0
+                      bola_azul.vx=0
+                      if pontos == 10: 
+                          bola_laranja.vy = 10
+                      if pontos == 9: 
+                          bola_laranja.vy = 15
+                      if pontos == 8: 
+                          bola_laranja.vy = 20
+                      if pontos == 7: 
+                          bola_laranja.vy = 25  
+                      if pontos == 6: 
+                          bola_laranja.vy = 30
+                      if pontos == 5: 
+                          bola_laranja.vy = 35
+                      if pontos == 4: 
+                          bola_laranja.vy = 40
+                      if pontos == 3: 
+                          bola_laranja.vy = 45
+                      if pontos == 2: 
+                          bola_laranja.vy = 50
+                      if pontos == 1: 
+                          bola_laranja.vy = 55
+                  
+        if not lançamento2:                
+            if pygame.sprite.collide_rect(bola_azul,alvo):
+                bola_azul.vx=0
+                copo.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo1):
+                bola_azul.vx=0
+                copo1.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo2):
+                bola_azul.vx=0
+                copo2.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo3):
+                bola_azul.vx=0
+                copo3.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo4):
+                bola_azul.vx=0
+                copo4.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo5):
+                bola_azul.vx=0
+                copo5.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo6):
+                bola_azul.vx=0
+                copo6.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo7):
+                bola_azul.vx=0
+                copo7.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo8):
+                bola_azul.vx=0
+                copo8.kill()
+            if pygame.sprite.collide_rect(bola_azul,alvo9):
+                bola_azul.vx=0
+                copo9.kill()
+                
+        if not lançamento:        
+            if pygame.sprite.collide_rect(bola_laranja,alvo_a):
+                bola_laranja.vx=0
+                copo_azul.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo1_a):
+                bola_laranja.vx=0
+                copo_azul1.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo2_a):
+                bola_laranja.vx=0
+                copo_azul2.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo3_a):
+                bola_laranja.vx=0
+                copo_azul3.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo4_a):
+                bola_laranja.vx=0
+                copo_azul4.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo5_a):
+                bola_laranja.vx=0
+                copo_azul5.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo6_a):
+                bola_laranja.vx=0
+                copo_azul6.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo7_a):
+                bola_laranja.vx=0
+                copo_azul7.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo8_a):
+                bola_laranja.vx=0
+                copo_azul8.kill()
+            if pygame.sprite.collide_rect(bola_laranja,alvo9_a):
+                bola_laranja.vx=0
+                copo_azul9.kill()
+    
+        pontos_laranja = len(copo_azul_group)
+        pontos = len(copo_group)
+        
+    
+        Pontos_Laranja(pontos_laranja)
+        Pontos(pontos)
+    
+        #gera saídas
+        tela.blit(fundo, (0, 0))
+        Pontos(pontos)
+        Pontos_Laranja(pontos_laranja)
+    
+    
+    
+        copo_azul_group.draw(tela)
+        copo_group.draw(tela)
+        bola_azul_group.draw(tela)
+        bola_laranja_group.draw(tela)
+        barra_group.draw(tela)
+        barra_group_a.draw(tela)
+    
+        
+        if pontos == 0 or pontos_laranja == 0:
+            menu=False
+            rodando=False
+            jogar = False
+            #coloca a tela na janela
+        pygame.display.update()
+        
     
 
 pygame.display.quit()
